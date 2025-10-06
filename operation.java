@@ -74,7 +74,7 @@ public class operation {
             if(partialstr.equals("0=>0")) newstr = newstr.replaceFirst("0=>0", "1");
         }
         if(newstr.contains("~~0")) newstr = newstr.replaceAll("~~0", "<=>");
-        //turns the impossible to occur string back into a implication.
+        //turns the impossible to occur string back into a biconditional.
         return newstr;
     }
     public static String biconditional(String str){

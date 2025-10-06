@@ -40,7 +40,7 @@ public static void main (String[] args) {
     String actual = instantiate(Phi, Ta);
     String actualTest2 = instantiate("qp pq", Ta);
     String actualTest3 = instantiate("pq \"none of these letters have a truth assignment\"", Ta);
-    String actualTest4 = instantiate("pqpqpq", new TruthAssignment("pq", "10"));
+    String actualTest4 = instantiate(")pq", Ta);
     String actualTest5 = instantiate("(pq)((pqpq)))", Ta);
     System.out.println(" " + actual + " " + actualTest2 + " " + actualTest3 + " " + actualTest4 + " " + actualTest5);
     }

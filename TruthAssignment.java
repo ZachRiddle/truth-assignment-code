@@ -11,24 +11,25 @@ public class TruthAssignment {
         String retval = "";
         Prop = lastparen(Prop);
         //updates prop immediately by putting it through lastparen.
-
-        for(int i = 0; i < Prop.length(); i++) {
-            char eVal = Prop.charAt(i);
-            //eval is the current character in the string we are changing
-            int index = Val.pc.indexOf(eVal);
-            //the int index is the index of eval in the "pc" string of the instatiated truth assignment.
-            if(index >= 0) {
-                retval = retval + Val.tv.charAt(index);
-            //we are reconstructing the string piece by piece.
+        if(Logical.Legal(Prop)) {
+            for(int i = 0; i < Prop.length(); i++) {
+                char eVal = Prop.charAt(i);
+                //eval is the current character in the string we are changing
+                int index = Val.pc.indexOf(eVal);
+                //the int index is the index of eval in the "pc" string of the instatiated truth assignment.
+                if(index >= 0) {
+                    retval = retval + Val.tv.charAt(index);
+                //we are reconstructing the string piece by piece.
+                }
+                else {
+                    retval = retval + eVal;
+                //if there is nothing in tv's index for us to add to retval, then it just adds the letter without changing it.
+                }
             }
-            else {
-                retval = retval + eVal;
-            //if there is nothing in tv's index for us to add to retval, then it just adds the letter without changing it.
-            }
-        }
-        retval = operation.semantic(retval);
+            retval = operation.semantic(retval);
+    }
+    else retval = "not legal sentence";
         return retval;
-        //retval is returned after updating.
     }
     public static String lastparen (String sentence) {
         int i = -1;
@@ -55,10 +56,10 @@ public static void main (String[] args) {
         System.out.println(instantiate("q=>p <=>", Ta));
         System.out.println(instantiate("p<=>q", Ta));
         System.out.println(instantiate("q|p", Ta));
-        System.out.println(instantiate("p|p q=>q", Ta));
-        System.out.println(instantiate("~p ~q", Ta));
-        System.out.println(instantiate("q<=>q p<=>q", Ta));
-        System.out.println(instantiate("p<=>q p=>p", Ta));
+        System.out.println(instantiate("q=>q", Ta));
+        System.out.println(instantiate("~p", Ta));
+        System.out.println(instantiate("q<=>p", Ta));
+        System.out.println(instantiate("p=>q", Ta));
+        System.out.println(instantiate("p", Ta));
     }
-
 }

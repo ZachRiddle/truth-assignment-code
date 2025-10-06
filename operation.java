@@ -23,11 +23,7 @@ public class operation {
         return newstr;
     }
     public static boolean standalone(String str) {
-        String piecestring = "";
-        if(str.contains("<=>")) {
-            piecestring = str.replaceAll("<=>", "");
-        }
-        if(piecestring.contains("=>")) return true;
+        if(str.contains("=>") && !str.contains("<=>")) return true;
         else return false;
     }
     public static String conjunction(String str) {
@@ -59,8 +55,6 @@ public class operation {
     }
     public static String implication(String str) {
         String newstr = str;
-        if (str.contains("<=>"))newstr = newstr.replaceAll("<=>", "~~0");
-        //the string will never contain ~~0 without replacing a <=> as negation has higher priority.
         String partialstr = "";
         if(str.contains("=>") && str.length() > 3) {
             int i = newstr.indexOf("=>");
@@ -73,8 +67,6 @@ public class operation {
             if(partialstr.equals("1=>1")) newstr = newstr.replaceFirst("1=>1", "1");
             if(partialstr.equals("0=>0")) newstr = newstr.replaceFirst("0=>0", "1");
         }
-        if(newstr.contains("~~0")) newstr = newstr.replaceAll("~~0", "<=>");
-        //turns the impossible to occur string back into a biconditional.
         return newstr;
     }
     public static String biconditional(String str){

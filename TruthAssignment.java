@@ -26,6 +26,7 @@ public class TruthAssignment {
             //if there is nothing in tv's index for us to add to retval, then it just adds the letter without changing it.
             }
         }
+        retval = operation.semantic(retval);
         return retval;
         //retval is returned after updating.
     }
@@ -42,17 +43,21 @@ public class TruthAssignment {
             Hi = firsthalf.length() + amend.indexOf(')');
             //hi needed to be the index of first right parenthesis after the last left parenthesis in the sentence.
         }
-        return sentence = sentence.substring(i+1, Hi);
+        sentence = sentence.substring(i+1, Hi);
+        return sentence;
     }
 public static void main (String[] args) {
     String Phi = "p&q";
     TruthAssignment Ta = new TruthAssignment("pq", "10");
     //making a variable so that "pq" is instantiated to "10"
     String actual = instantiate(Phi, Ta);
-    String actualTest2 = instantiate("qp pq", Ta);
-    String actualTest3 = instantiate("pq \"none of these letters have a truth assignment\"", Ta);
-    String actualTest4 = instantiate("(pq)pq", Ta);
-    String actualTest5 = instantiate("(pq((pqpq)qq", Ta);
-    System.out.println(" " + actual + " " + actualTest2 + " " + actualTest3 + " " + actualTest4 + " " + actualTest5);
+        System.out.println(actual);
+        System.out.println(instantiate("q=>p . <=>", Ta));
+        System.out.println(instantiate("p<=>q", Ta));
+        System.out.println(instantiate("q|p", Ta));
+        System.out.println(instantiate("|p", Ta));
+        System.out.println(instantiate("~p ~q", Ta));
+        System.out.println(instantiate("q<=>q p<=>q", Ta));
     }
+
 }

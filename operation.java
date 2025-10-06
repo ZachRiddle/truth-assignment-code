@@ -59,17 +59,22 @@ public class operation {
     }
     public static String implication(String str) {
         String newstr = str;
+        if (str.contains("<=>"))newstr = newstr.replaceAll("<=>", "~~0");
+        //the string will never contain ~~0 without replacing a <=> as negation has higher priority.
         String partialstr = "";
         if(str.contains("=>") && str.length() > 3) {
-            int i = str.indexOf("=>");
+            int i = newstr.indexOf("=>");
             if (i == 0) i++;
-            int Hi = str.indexOf("=>") + 3;
-            partialstr = str.substring(i-1, Hi);
+            //to make sure we dont get out of bounds.
+            int Hi = newstr.indexOf("=>") + 3;
+            partialstr = newstr.substring(i-1, Hi);
             if(partialstr.equals("1=>0")) newstr = newstr.replaceFirst("1=>0", "0");
             if(partialstr.equals("0=>1")) newstr = newstr.replaceFirst("0=>1", "1");
             if(partialstr.equals("1=>1")) newstr = newstr.replaceFirst("1=>1", "1");
             if(partialstr.equals("0=>0")) newstr = newstr.replaceFirst("0=>0", "1");
         }
+        if(newstr.contains("~~0")) newstr = newstr.replaceAll("~~0", "<=>");
+        //turns the impossible to occur string back into a implication.
         return newstr;
     }
     public static String biconditional(String str){

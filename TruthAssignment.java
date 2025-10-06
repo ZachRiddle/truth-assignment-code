@@ -58,6 +58,7 @@ public static void main (String[] args) {
         System.out.println(instantiate("|p", Ta));
         System.out.println(instantiate("~p ~q", Ta));
         System.out.println(instantiate("q<=>q p<=>q", Ta));
+        System.out.println(instantiate("p<=>q p=>p", Ta));
     }
 
 }

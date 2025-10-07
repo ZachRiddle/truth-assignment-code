@@ -54,7 +54,7 @@ public static void main (String[] args) {
     String actual = instantiate(Phi, Ta);
         System.out.println(actual);
         System.out.println(instantiate("q=>p <=>", Ta));
-        System.out.println(instantiate("p<=>q", Ta));
+        System.out.println(instantiate("(p<=>q))", Ta));
         System.out.println(instantiate("q|p", Ta));
         System.out.println(instantiate("q=>q", Ta));
         System.out.println(instantiate("~p", Ta));
